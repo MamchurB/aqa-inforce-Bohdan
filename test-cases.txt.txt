@@ -1,0 +1,198 @@
+==============================
+UI TEST CASES — ROOM BOOKING
+https://automationintesting.online/
+===================================
+
+
+TC_UI_01 — Book a room with valid data
+--------------------------------------
+
+Type: Smoke & Sanity
+Priority: Medium
+Status: Ready for Automation
+Estimate: ~10 min
+Automation Candidate: Yes
+
+Preconditions:
+- User is on the booking page: https://automationintesting.online/
+- At least one room is available for booking
+
+Test Steps:
+
+1. Scroll down to the "Rooms" section
+   Expected Result:
+   - Available rooms are displayed
+
+2. Click on any available room
+   Expected Result:
+   - Detailed room information page is opened
+   - Booking option is available
+
+3. Select valid check-in and check-out dates
+   Example: 20.02.2026 – 22.02.2026
+   Expected Result:
+   - Selected dates are marked as "Selected"
+
+4. Click the "Reserve Now" button
+   Expected Result:
+   - User is navigated to the contact information form
+
+5. Fill in the booking form with valid data:
+   - First name: John
+   - Last name: Doedon
+   - Email: test@gmail.com
+   - Phone: 123456789098
+
+6. Click the "Reserve Now" button again to confirm booking
+   Expected Result:
+   - Booking confirmation message appears (e.g., "Booking Confirmed")
+   - Selected dates become unavailable for new bookings
+
+Notes:
+- After returning to the main page, all rooms appeared unavailable (possible UI bug or environment issue).
+
+
+==================================================
+
+
+TC_UI_02 — Room cannot be booked with invalid data
+--------------------------------------------------
+
+Type: Smoke & Sanity
+Priority: Medium
+Status: Ready for Automation
+Estimate: ~10 min
+Automation Candidate: Yes
+
+Preconditions:
+- User is on the booking page: https://automationintesting.online/
+- At least one room is available for booking
+
+
+Scenario 1 — Invalid booking with past dates
+--------------------------------------------
+
+1. Scroll down to the "Rooms" section
+   Expected Result:
+   - Available rooms are displayed
+
+2. Click on any available room
+   Expected Result:
+   - Detailed room information page is opened
+
+3. Select invalid check-in and check-out dates in the past
+   Example: 05.02.2026 – 07.02.2026
+   Expected Result:
+   - Validation error message should appear
+   - User should not be able to proceed with booking
+
+Actual Result:
+   - No validation message appeared
+   - User was able to proceed to contact information form
+   - After submitting booking details, the application crashed with error:
+
+     "Application error: a client-side exception has occurred while loading automationintesting.online"
+
+
+Scenario 2 — Invalid booking with unavailable dates
+---------------------------------------------------
+
+4. Select dates that are already unavailable
+   Example: 03.05.2026 – 05.05.2026
+   Expected Result:
+   - Error message should appear indicating the dates are unavailable
+   - Booking should not be allowed
+
+Actual Result:
+   - No validation message appeared
+   - User was able to proceed to the contact form
+   - After submitting booking details, the same client-side exception occurred:
+
+     "Application error: a client-side exception has occurred while loading automationintesting.online"
+
+Notes:
+- The system does not properly validate invalid or unavailable date selections.
+- Instead of showing an error, the application crashes (critical defect).
+
+
+==================================================
+
+
+TC_UI_03 — Earlier booked dates show as unavailable
+---------------------------------------------------
+
+Type: Smoke & Sanity
+Priority: Medium
+Status: Ready for Automation
+Estimate: ~10 min
+Automation Candidate: Yes
+
+Preconditions:
+- User is on the booking page: https://automationintesting.online/
+- At least one room is available for booking
+
+
+Step A — Create a booking
+-------------------------
+
+1. Scroll down to the "Rooms" section
+   Expected Result:
+   - Available rooms are displayed
+
+2. Click on any available room
+   Expected Result:
+   - Detailed room information page is opened
+
+3. Select valid check-in and check-out dates
+   Example: 20.02.2026 – 22.02.2026
+   Expected Result:
+   - Selected dates are highlighted as "Selected"
+
+4. Click the "Reserve Now" button
+   Expected Result:
+   - User is navigated to the contact information form
+
+5. Fill in booking form with valid data:
+   - First name: John
+   - Last name: Doedon
+   - Email: test@gmail.com
+   - Phone: 123456789098
+
+6. Click "Reserve Now" button to confirm booking
+   Expected Result:
+   - Booking confirmation message is displayed (e.g., "Booking Confirmed")
+
+7. Click "Return home" button
+   Expected Result:
+   - User is redirected back to the main page
+
+
+Step B — Verify booked dates become unavailable
+-----------------------------------------------
+
+8. Scroll again to the "Rooms" section and open the same room
+   Expected Result:
+   - Room details page is displayed
+
+9. Try selecting the same previously booked dates
+   Example: 20.02.2026 – 22.02.2026
+   Expected Result:
+   - Dates should be marked as unavailable
+   - User should not be able to select them
+   - Booking should be blocked with validation message
+
+Actual Result:
+   - No "Unavailable" message was shown
+   - User was able to proceed to contact information form
+   - After submitting booking details, the application crashed with error:
+
+     "Application error: a client-side exception has occurred while loading automationintesting.online"
+
+Notes:
+- The system does not correctly prevent double-booking of already reserved dates.
+- Instead of blocking the selection, the UI flow continues and results in a client-side crash.
+- This is a critical defect for booking functionality.
+
+==============================
+END OF TEST CASES
+==============================
