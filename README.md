@@ -4,20 +4,21 @@ This project contains automated tests for the **Automation Testing Online** webs
 
 ## Project Structure
 
-├─ tests/
-│  ├─ models/
-│  │  └─ BookingData.ts          # Test data for valid/invalid bookings
-│  ├─ BookingAppPage.ts          # Page Object Model class for UI interactions
-│  ├─ ReportApi.ts               # API helper for login and report fetching
-│  ├─ room_api.test.ts           # Tests for room creation/edit/deletion via API
-│  └─ test-cases.test.ts         # Main room booking UI tests
-├─ node_modules/
-├─ playwright-report/            # Playwright HTML reports
-├─ test-results/                 # Raw test outputs
-├─ package.json
-├─ package-lock.json
-├─ playwright.config.ts
-└─ README.md
+room-booking-tests/
+├─ **tests/**  
+│  ├─ **models/**  
+│  │  └─ `BookingData.ts`          
+│  ├─ `BookingAppPage.ts`         
+│  ├─ `ReportApi.ts`                 
+│  ├─ `room_api.test.ts`            
+│  └─ `test-cases.test.ts`        
+├─ **node_modules/**                 
+├─ **playwright-report/**           
+├─ **test-results/**                 
+├─ `package.json`                    
+├─ `package-lock.json`              
+├─ `playwright.config.ts`            
+└─ `README.md`                    
 
 ## Tests Overview
 
