@@ -30,7 +30,14 @@ room-booking-tests/
    - Book room with valid data  
    - Attempt booking with invalid data (past dates, checkout before checkin, empty fields)  
    - Verify that earlier booked dates are unavailable
+## Known Issues / Bugs
 
+- Rooms can be created with **invalid dates** via UI/API.  
+- Contact field validation behaves inconsistently: a **valid email may fail** the check.  
+- `GetId` method: if a **non-existent ID** is provided, the request fails due to **time-out**.  
+- Other potential inconsistencies in the UI and API related to data entry.
+
+> Recommendation: use test data cautiously in production environments.
 ## Setup
 
 ```bash
@@ -41,11 +48,3 @@ npx playwright install
 npm install
 npx playwright install
 
-## Known Issues / Bugs
-
-- Rooms can be created with **invalid dates** via UI/API.  
-- Contact field validation behaves inconsistently: a **valid email may fail** the check.  
-- `GetId` method: if a **non-existent ID** is provided, the request fails due to **time-out**.  
-- Other potential inconsistencies in the UI and API related to data entry.
-
-> Recommendation: use test data cautiously in production environments.
