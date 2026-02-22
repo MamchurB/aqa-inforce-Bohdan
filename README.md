@@ -15,22 +15,23 @@ This project contains automated tests for:
 
 ## 📂 Project Structure
 
-room-booking-tests/
-├─ tests/
-│  ├─ models/
-│  │  └─ BookingData.ts          — Test data for valid and invalid bookings
-│  ├─ BookingAppPage.ts          — Page Object Model for UI interactions
-│  ├─ ReportApi.ts               — API helper for login and report fetching
-│  ├─ room_api.test.ts           — API tests for room creation/editing/deletion
-│  └─ test-cases.test.ts         — Main UI room booking tests
-├─ node_modules/                 — Node.js dependencies
-├─ playwright-report/            — Playwright HTML reports
-├─ test-results/                 — Raw test execution results
-├─ package.json                  — Project configuration and dependencies
-├─ package-lock.json             — Locked dependency versions
-├─ playwright.config.ts          — Playwright configuration
-└─ README.md                     — Project documentation
-
+├─ **.github/**  
+├─ **node_modules/**  
+├─ **playwright-report/**  
+├─ **test-results/**  
+├─ **tests/**  
+│  ├─ **models/**  
+│  │  ├─ `APIHelper.ts`           — API helper methods  
+│  │  ├─ `BookingAppPage.ts`      — Page Object Model for UI interactions  
+│  │  └─ `ReportApi.ts`           — API helper for login and report validation  
+│  ├─ `room_api.test.ts`          — API tests for room creation/editing/deletion  
+│  └─ `test-cases.test.ts`        — Main UI room booking tests  
+├─ `.gitignore`  
+├─ `package.json`                 — Project configuration and dependencies  
+├─ `package-lock.json`            — Locked dependency versions  
+├─ `playwright.config.ts`         — Playwright configuration  
+├─ `test-cases.txt.txt`           — Test cases documentation  
+└─ `README.md`  
 ---
 
 ## 🚀 Installation
