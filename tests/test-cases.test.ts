@@ -35,22 +35,18 @@ test.describe('Room Booking Tests', () => {
   test('Check that the earlier booked dates show as Unavailable', async ({ page, request }) => {
     const reportApi = new ReportApi(request);
     const firstBooking = booking.validBookingDataSet[0];
-     const checkinUnavaibe = '2026-06-28';
-    const checkoutUnavaibe = '2026-06-30';
-    await booking.setDates(checkinUnavaibe, checkoutUnavaibe);
-    await booking.navigateToMonth(checkinUnavaibe);
+     const checkinUnavailable = '2026-06-28';
+    const checkoutUnavailable = '2026-06-30';
+    await booking.setDates(checkinUnavailable, checkoutUnavailable);
+    await booking.navigateToMonth(checkinUnavailable);
     await booking.clickReserve();
     await booking.fillForm(firstBooking);
     await booking.clickReserve();
     const token = await reportApi.loginAndGetToken();
-const report = await reportApi.getReport(token);
-
-const reportJson: { report: any[] } = await report;
-console.log(reportJson);
-  const exists = reportJson.report.some(b =>
-    b.start === checkinUnavaibe &&
-    b.end === checkoutUnavaibe
-  );
+    const exists = await reportApi.verifyBookingExists(
+      checkinUnavailable,
+      checkoutUnavailable
+    );
 
   expect(exists).toBeTruthy();
   });

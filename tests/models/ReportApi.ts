@@ -25,4 +25,16 @@ export class ReportApi {
     expect(response.ok()).toBeTruthy();
     return response.json();
   }
+
+  async verifyBookingExists(checkin: string, checkout: string): Promise<boolean> {
+    const token = await this.loginAndGetToken();
+    const report = await this.getReport(token);
+
+    const reportJson: { report: any[] } = await report;
+
+    return reportJson.report.some(b =>
+      b.start === checkin &&
+      b.end === checkout
+    );
+}
 }
